@@ -1,0 +1,6 @@
+<%= render :partial => 'shared/powerreviews_engine_js', :locals=>{:product => product}%>
+<%if product.show_powerreviews%>
+<div class="rating"><div class="pr_snippet_category"><%=
+    link_to "Ask a Question",'#qa'
+%></div></div>
+<% end %>

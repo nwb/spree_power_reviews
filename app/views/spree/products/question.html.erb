@@ -1,0 +1,58 @@
+<% content_for :head do -%>
+    <%= canonical_tag %>
+<% end -%>
+<% content_for :breadcrumbs do %>
+  <%#= render "shared/pwb_banner" %>
+  <%= breadcrumbs(@taxon, @product) %>
+<% end
+additional = nil
+email      = nil
+user_id    = nil
+
+prefix = current_store
+
+unless params[ :number ].nil?
+    additional = { :order_number => params[ :number ] }
+end
+unless params[ :email ].nil?
+    email = params[ :email ]
+end
+unless params[ :uid ].nil?
+    user_id = params[ :uid ]
+end
+%>
+
+<% if params[:appName]=='askQuestion'%>
+<div class="product_description" style="padding-top:0px">
+<h2><%= @product.name %></h2>
+</br>
+
+</div>
+
+<%end%>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    var pr_locale = 'en_US';
+    var pr_page_id = <%= @product.id.to_s%>;
+    var pr_style_sheet = '/powerreviews.css';
+    var pr_merchant_group_id = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["merchant_group_id"] %>;
+    var pr_promo_code = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["pr_promo_code"] %>
+    var pr_site_id = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["site_id"] %>;
+    //]]>
+</script><script src="/pwr/engine/js/appLaunch.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+    $("#submitReviewIframe").load(function(){
+      location.href='#';
+      $('#submitReviewIframe').css('height','800px');
+      return false;
+    });
+  });
+</script>
+
+
+

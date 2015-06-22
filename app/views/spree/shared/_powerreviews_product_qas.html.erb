@@ -1,0 +1,19 @@
+
+    <div class="pr_review_summary" id="qa_summary_<%=@product.id.to_s%>">
+      <% #if ( pwr_config( :enterprise, product ) && product.review_set && !product.review_set_qa_inline_path.blank? && File.exists?( product.review_set_qa_inline_path ) )%>
+      <%#= File.read( product.review_set_qa_inline_path )%>
+      <%# end %>
+    </div>
+    <script>
+        var q<%=@product.id.to_s%>=$("#qa_summary_<%=@product.id.to_s%>")
+        q<%=@product.id.to_s%>.write=function(d){q<%=@product.id.to_s%>.html(d)}
+    </script>
+    <script type="text/javascript">
+POWERREVIEWS.display.productAnswers(q<%= @product.id.to_s %>, {
+        'pr_page_id': "<%= @product.id.to_s %>",
+        'pr_ask_question':"/products/<%=@product.slug%>/question?appName=askQuestion",
+        'pr_answer_question':'/products/<%=@product.slug%>/answer?appName=answerQuestion&questionId=@@@QUESTION_ID@@@',
+        'pr_style_sheet':'/'
+        }
+    );
+    </script>

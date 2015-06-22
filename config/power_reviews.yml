@@ -1,0 +1,26 @@
+# Be sure to restart your server when you modify this file.
+# your real file should be at your_app/config folder
+
+# power review account info
+
+default: &default
+   delete: 1
+   delete_file: done.txt
+   file: zipfilename.zip
+   ftp_host: partners.powerreviews.com
+   ftp_pass: you_pass
+   ftp_passive: 1
+   ftp_user: your_user_name
+   review_content_names: cotent names
+   appLaunch_js_url    : /pwr/engine/js/appLaunch.js
+   custom_style_url    :
+   engine_base         : /pwr/engine/js
+   engine_js_url       : /pwr/engine/js/full.js
+   enterprise          : 1
+   locale              : en_US
+   merchant_group_id   : your_merchant_group_id
+   review_style_url    :
+   site_id             : your_site_id
+   write_style_url     : /stylesheets/powerreviews.css
+   zip_location_url    : /
+   pr_promo_code : promotion_coupon

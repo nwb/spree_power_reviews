@@ -1,0 +1,15 @@
+<div class="pr_review_summary" id="review_summary_<%=@product.id.to_s%>">
+  <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
+</div>
+<script>
+    var rs<%=@product.id.to_s%>=$("#review_summary_<%=@product.id.to_s%>")
+    rs<%=@product.id.to_s%>.html('')
+    rs<%=@product.id.to_s%>.write=function(d){rs<%=@product.id.to_s%>.html(d)}
+</script>
+
+<script type="text/javascript">
+    //<![CDATA[
+    POWERREVIEWS.display.snippet( rs<%=@product.id.to_s%>, {"pr_snippet_min_reviews":1,"pr_read_review":"<%=@product.slug%>h#reviews","pr_write_review":"<%=@product.slug%>/review","pr_style_sheet":"http://www.naturalwellbeing.com","pr_page_id":"<%=@product.id.to_s%>"});
+    //]]>
+</script>
+

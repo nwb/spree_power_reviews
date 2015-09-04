@@ -1,5 +1,6 @@
-
-    <div class="pr_review_summary" id="qa_summary_<%=@product.id.to_s%>">
+<div id="qa" class="ui-tabs-panel ui-widget-content ui-corner-bottom" data-hook="product_qa">
+  </br>
+    <div class="pr_review_summary" style="display:none;" id="qa_summary_<%=@product.id.to_s%>">
       <% #if ( pwr_config( :enterprise, product ) && product.review_set && !product.review_set_qa_inline_path.blank? && File.exists?( product.review_set_qa_inline_path ) )%>
       <%#= File.read( product.review_set_qa_inline_path )%>
       <%# end %>
@@ -17,3 +18,50 @@ POWERREVIEWS.display.productAnswers(q<%= @product.id.to_s %>, {
         }
     );
     </script>
+
+  <!-- live chat box if possible-->
+
+  <div id="live_chat_div">
+    <div id="back_to_product" title="End Chat & Return to Store" style="
+    display:none;
+            margin-top: 314px;
+            z-index: 51;
+            position: absolute;
+            margin-left: 187px;
+    " onclick="closeIframe()"><a href="/c/condition/" style="color:#0169AB">End Chat & Return to Store </a></div>
+
+    <iframe id="chat_live_expert" style="border:0px;height:1px;width:580px;display:none"> </iframe>
+  </div>
+  <br/>
+  <script type="text/javascript">
+      function load_live_chat(){
+          if ($('.bcFloat').height()>30)
+          {
+              $('#chat_live_expert').css('height','330px');
+              //$('#chat_live_expert').attr('src','https://livechat.boldchat.com/aid/2298068183499916261/bc.chat?cwdid=4366147078973920363');
+
+              $('#chat_live_expert').attr('src','https://livechat.boldchat.com/aid/2298068183499916261/bc.chat?cwdid=4366147078973920363&amp;wdid=203850399395769927');
+
+              // $('#chat_live_expert').show();
+              $('#chat_live_expert').load(function(){
+                  setTimeout(function(){$('#chat_live_expert').css('display', 'block')},2000); });
+              $('#qa .pr_review_summary').css('display', 'none');
+          }
+          else
+              $('#qa .pr_review_summary').css('display', 'block');
+          //$('#live_chat_div').html('<a style="color: #0169AB;font-size: 14px;font-weight: normal;" href="/meetexpert/1133?appName=askQuestion">Ask Paulina</a>')
+      }
+
+
+      function closeIframe() {
+          document.getElementById('chat_live_expert').style.display = 'none';
+
+      }
+
+      jQuery(document).ready(function(){
+          setTimeout(load_live_chat,500);
+
+      });
+
+  </script>
+</div>

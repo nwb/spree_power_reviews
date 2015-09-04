@@ -13,7 +13,7 @@ var pr_site_id = '2';
 
 <%   end -%>
 
-
+<div id="reviews" class="ui-tabs-panel ui-widget-content ui-corner-bottom" data-hook="product_reviews">
 <div itemprop="aggregateRating"  class="forschema"  style="display:none;"
        itemscope itemtype="http://schema.org/AggregateRating">
        Rated <span itemprop="ratingValue">4</span>/5
@@ -33,4 +33,5 @@ var pr_site_id = '2';
     POWERREVIEWS.display.engine(r<%=@product.id.to_s%>, {"pr_snippet_min_reviews":1,"pr_write_review":"/products/<%=@product.slug%>/review","pr_style_sheet":"/","pr_page_id":"<%=@product.id.to_s%>"});
     //]]>
 </script>
+</div>
 

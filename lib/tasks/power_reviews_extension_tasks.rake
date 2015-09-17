@@ -59,8 +59,8 @@ namespace :spree do
             summary_doc = Nokogiri::XML( open(rds.first) )
             summary_doc.css( "product" ).each do | prod |
               page_id    = prod.css( "pageid" ).inner_text
-              if Product.exists?( page_id )
-                product = Product.find( page_id )
+              if Spree::Product.exists?( page_id )
+                product = Spree::Product.find( page_id )
                 unless product.review_set
                   product.create_review_set
                   product.save

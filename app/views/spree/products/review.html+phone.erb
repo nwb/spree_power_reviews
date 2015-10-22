@@ -1,0 +1,46 @@
+<% content_for :head do -%>
+    <%= canonical_tag %>
+<% end -%>
+<% content_for :breadcrumbs do %>
+  <%#= render "shared/pwb_banner" %>
+  <%= breadcrumbs(@taxon, @product) %>
+<% end %>
+
+
+<div class="product_description" style="padding-top:0px">
+<h2><%= @product.name %></h2>
+</div>
+
+
+<%
+   #for the products sharing reviews
+   review_product=@product
+
+%>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var pr_locale = 'en_US';
+        var pr_page_id = <%= @product.id.to_s%>;
+        var pr_style_sheet = '/powerreviews.css';
+        var pr_merchant_group_id = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["merchant_group_id"] %>;
+        var pr_promo_code = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["pr_promo_code"] %>
+        var pr_site_id = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["site_id"] %>;
+        //]]>
+    </script>
+    <script src="/pwr/engine/js/appLaunch.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+  jQuery(document).ready(function(){
+    $("#submitReviewIframe").load(function(){
+      location.href='#';
+      $('#submitReviewIframe').css('height','2800px');
+      return false;
+    });
+  });
+</script>
+
+
+

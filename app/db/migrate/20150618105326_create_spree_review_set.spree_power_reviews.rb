@@ -14,6 +14,6 @@ class CreateSpreeReviewSet < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :product_power_reviews
+    drop_table :spree_review_sets
   end
 end

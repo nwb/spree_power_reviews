@@ -16,8 +16,8 @@ var pr_site_id = '2';
 <div id="reviews" class="ui-tabs-panel ui-widget-content ui-corner-bottom" data-hook="product_reviews">
 <div itemprop="aggregateRating"  class="forschema"  style="display:none;"
        itemscope itemtype="http://schema.org/AggregateRating">
-       Rated <span itemprop="ratingValue">4</span>/5
-       based on <span itemprop="reviewCount">2000</span> customer reviews
+       Rated <span itemprop="ratingValue"><%= @product.review_set_average_rating %></span>/5
+       based on <span itemprop="reviewCount"><%= @product.review_set_full_review_count %></span> customer reviews
 </div>
 <div class="pr_review_summary" id="review_<%=@product.id.to_s%>">
     <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>

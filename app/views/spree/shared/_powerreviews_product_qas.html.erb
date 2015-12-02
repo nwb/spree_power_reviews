@@ -1,4 +1,5 @@
 <div id="qa" class="ui-tabs-panel ui-widget-content ui-corner-bottom" data-hook="product_qa">
+  <%= render_snippet("#{current_store.code}-legal-disclaimer") %>
   </br>
     <div class="pr_review_summary" style="display:none;" id="qa_summary_<%=@product.id.to_s%>">
       <% #if ( pwr_config( :enterprise, product ) && product.review_set && !product.review_set_qa_inline_path.blank? && File.exists?( product.review_set_qa_inline_path ) )%>

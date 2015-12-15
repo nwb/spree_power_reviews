@@ -17,21 +17,21 @@ var pr_site_id = '2';
   <%= render_snippet("#{current_store.code}-legal-disclaimer") %>
 <div itemprop="aggregateRating"  class="forschema"  style="display:none;"
        itemscope itemtype="http://schema.org/AggregateRating">
-       Rated <span itemprop="ratingValue"><%= @product.review_set_average_rating %></span>/5
-       based on <span itemprop="reviewCount"><%= @product.review_set_full_review_count %></span> customer reviews
+       Rated <span itemprop="ratingValue"><%= @review_product.review_set_average_rating %></span>/5
+       based on <span itemprop="reviewCount"><%= @review_product.review_set_full_review_count %></span> customer reviews
 </div>
-<div class="pr_review_summary" id="review_<%=@product.id.to_s%>">
+<div class="pr_review_summary" id="review_<%=@review_product.id.to_s%>">
     <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
 </div>
     <script>
-        var r<%=@product.id.to_s%>=$("#review_<%=@product.id.to_s%>")
-        r<%=@product.id.to_s%>.html('')
-        r<%=@product.id.to_s%>.write=function(d){r<%=@product.id.to_s%>.html(d)}
+        var r<%=@review_product.id.to_s%>=$("#review_<%=@review_product.id.to_s%>")
+        r<%=@review_product.id.to_s%>.html('')
+        r<%=@review_product.id.to_s%>.write=function(d){r<%=@review_product.id.to_s%>.html(d)}
     </script>
 
 <script type="text/javascript">
     //<![CDATA[
-    POWERREVIEWS.display.engine(r<%=@product.id.to_s%>, {"pr_snippet_min_reviews":1,"pr_write_review":"/products/<%=@product.slug%>/review","pr_style_sheet":"/","pr_page_id":"<%=@product.id.to_s%>"});
+    POWERREVIEWS.display.engine(r<%=@review_product.id.to_s%>, {"pr_snippet_min_reviews":1,"pr_write_review":"/products/<%=@review_product.slug%>/review","pr_style_sheet":"/","pr_page_id":"<%=@review_product.id.to_s%>"});
     //]]>
 </script>
 </div>

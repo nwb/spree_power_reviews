@@ -1,11 +1,11 @@
-<%   @review_product||=product%>
+<%   @product||=product%>
 <%
-   @review_product=product
-   if %w(1738 1739 1740).include?(product.id.to_s)
+   @review_product=@product
+   if %w(1738 1739 1740).include?(@product.id.to_s)
      @review_product=Spree::Product.find(1737)
    end
    #fo-ti
-   if %w(1770).include?(product.id.to_s)
+   if %w(1770).include?(@product.id.to_s)
      @review_product=Spree::Product.find(1439)
    end
 %>

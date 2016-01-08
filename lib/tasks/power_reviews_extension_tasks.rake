@@ -77,7 +77,7 @@ namespace :spree do
                 review_set.bottom_line_yes_votes = prod.css( "bottom_line_yes_votes" ).inner_text.to_i
                 review_set.bottom_line_no_votes  = prod.css( "bottom_line_no_votes" ).inner_text.to_i
                 review_set.save
-                prods << { :store => product.store.code, :permalink => product.permalink}
+                prods << { :permalink => product.slug}
                 report << "Updating reviews for #{product.sku} (#{review_set.full_review_count} reviews)"
               end
             end

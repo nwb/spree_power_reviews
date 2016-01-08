@@ -126,7 +126,7 @@ namespace :spree do
           ftp.login( Spree::PowerReviewsConfiguration.account["default"]["ftp_user"], Spree::PowerReviewsConfiguration.account["default"]["ftp_pass"])
 
           # we are going to process the 
-          if ftp.nlst.include?( Spree::PowerReviewsConfiguration.account["default"]["delete_file"]) || !Spree::PowerReviewsConfiguration.account["default"]["delete"]
+          if ftp.nlst.include?( Spree::PowerReviewsConfiguration.account["default"]["delete_file"]) || Spree::PowerReviewsConfiguration.account["default"]["delete"]==0
             report << "Downloading zipfile #{Spree::PowerReviewsConfiguration.account["default"]["file"] } and extracting to #{dest}"
             tmpzip = Tempfile.new( 'zip' )
             file_count = 0
@@ -143,7 +143,7 @@ namespace :spree do
             # verify contents
             if ["content", "engine", "**/review_data_summary.xml" ].inject(true){ |result, the_dir| result && ( Dir.glob( File.join( dest, "pwr",  the_dir ) ).count > 0 ) }
               success = :complete
-              if Spree::PowerReviewsConfiguration.account["default"]["delete"]
+              if Spree::PowerReviewsConfiguration.account["default"]["delete"]==1
                 report << "Deleting #{Spree::PowerReviewsConfiguration.account["default"]["delete_file"]}"
                 ftp.delete(Spree::PowerReviewsConfiguration.account["default"]["delete_file"])
               end

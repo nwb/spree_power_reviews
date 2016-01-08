@@ -100,7 +100,7 @@ namespace :spree do
 
       def expire_cache prods
         return unless File.exist?(File.join(Rails.root, "public", "cache"))
-        controller = ProductsController.new
+        controller = Spree::ProductsController.new
         prods.each do |prod|
           Dir.entries(File.join(Rails.root, "public", "cache")).each do |path|
             next if [".", ".."].include?(path)

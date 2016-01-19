@@ -45,7 +45,7 @@ namespace :spree do
           if File.exist?( current ) && !File.symlink?( current )
             report << "#{current} exists and is not a symlink, deleting"
             remove_entry_secure(current, true)
-          elsif File.exist?( current ) && File.symlink?( current )
+          elsif File.symlink?( current )
               report << "Unlinking #{current}"
               File.unlink( current )
           end

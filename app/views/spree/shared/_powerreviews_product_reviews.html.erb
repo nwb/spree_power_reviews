@@ -14,7 +14,7 @@ var pr_site_id = '2';
 <%   end -%>
 
 <div id="reviews" class="ui-tabs-panel ui-widget-content ui-corner-bottom" data-hook="product_reviews">
-  <%= render_snippet("#{current_store.code}-legal-disclaimer") %>
+
 <div itemprop="aggregateRating"  class="forschema"  style="display:none;"
        itemscope itemtype="http://schema.org/AggregateRating">
        Rated <span itemprop="ratingValue"><%= @review_product.review_set_average_rating %></span>/5

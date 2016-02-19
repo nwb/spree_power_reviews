@@ -20,10 +20,14 @@ var pr_site_id = '2';
        Rated <span itemprop="ratingValue"><%= @review_product.review_set_average_rating %></span>/5
        based on <span itemprop="reviewCount"><%= @review_product.review_set_full_review_count %></span> customer reviews
 </div>
+  <div class="pr_review_summary" id="review_images_<%=@review_product.id.to_s%>">
   <script type="text/javascript">
       //<![CDATA[
+      var rm<%=@review_product.id.to_s%>=$("#review_images_<%=@review_product.id.to_s%>")
+      rm<%=@review_product.id.to_s%>.html('')
+      rm<%=@review_product.id.to_s%>.write=function(d){rm<%=@review_product.id.to_s%>.html(d)}
       if (typeof POWERREVIEWS != 'undefined' && typeof POWERREVIEWS.display != 'undefined' && typeof POWERREVIEWS.display.imageSnippet != 'undefined'){
-          POWERREVIEWS.display.imageSnippet(document, {"pr_image_snippet_max":200,"pr_page_id":"<%=@review_product.id.to_s%>"});
+          POWERREVIEWS.display.imageSnippet(rm<%=@review_product.id.to_s%>, {"pr_image_snippet_max":200,"pr_page_id":"<%=@review_product.id.to_s%>"});
       }
       //]]>
   </script>

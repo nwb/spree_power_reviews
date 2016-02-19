@@ -20,6 +20,8 @@ var pr_site_id = '2';
        Rated <span itemprop="ratingValue"><%= @review_product.review_set_average_rating %></span>/5
        based on <span itemprop="reviewCount"><%= @review_product.review_set_full_review_count %></span> customer reviews
 </div>
+  <%unless request.xhr?%>
+
   <div class="pr_review_summary" id="review_images_<%=@review_product.id.to_s%>"></div>
   <script type="text/javascript">
       //<![CDATA[
@@ -31,6 +33,7 @@ var pr_site_id = '2';
       }
       //]]>
   </script>
+  <%end%>
 <div class="pr_review_summary" id="review_<%=@review_product.id.to_s%>">
     <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
 </div>

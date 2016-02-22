@@ -22,17 +22,16 @@ var pr_site_id = '2';
 </div>
   <%unless request.xhr?%>
 
-  <div class="pr_review_summary" id="review_images_<%=@review_product.id.to_s%>"></div>
-  <script type="text/javascript">
-      //<![CDATA[
-      var rm<%=@review_product.id.to_s%>=$("#review_images_<%=@review_product.id.to_s%>")
-      rm<%=@review_product.id.to_s%>.html('')
-      rm<%=@review_product.id.to_s%>.write=function(d){rm<%=@review_product.id.to_s%>.html(d)}
-      if (typeof POWERREVIEWS != 'undefined' && typeof POWERREVIEWS.display != 'undefined' && typeof POWERREVIEWS.display.imageSnippet != 'undefined'){
-          POWERREVIEWS.display.imageSnippet(rm<%=@review_product.id.to_s%>, {"pr_image_snippet_max":200,"pr_page_id":"<%=@review_product.id.to_s%>"});
-      }
-      //]]>
-  </script>
+  <div class="pr_review_summary" id="review_images_<%=@review_product.id.to_s%>">
+    <script type="text/javascript">
+        //<![CDATA[
+        if (typeof POWERREVIEWS != 'undefined' && typeof POWERREVIEWS.display != 'undefined' && typeof POWERREVIEWS.display.imageSnippet != 'undefined'){
+            POWERREVIEWS.display.imageSnippet(document, {"pr_image_snippet_max":200,"pr_page_id":"<%=@review_product.id.to_s%>"});
+        }
+        //]]>
+    </script>
+
+  </div>
   <%end%>
 <div class="pr_review_summary" id="review_<%=@review_product.id.to_s%>">
     <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>

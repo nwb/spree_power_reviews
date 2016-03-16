@@ -36,7 +36,7 @@ end
     //<![CDATA[
     var pr_locale = 'en_US';
     var pr_page_id = <%= @product.id.to_s%>;
-    var pr_style_sheet = '/assets/spree/frontend/powerreviews.css';
+    var pr_style_sheet = 'http://www.naturalwellbeing.com/assets/praskexpert.css';
     var pr_merchant_group_id = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["merchant_group_id"] %>;
     var pr_promo_code = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["pr_promo_code"] %>
     var pr_site_id = <%= Spree::PowerReviewsConfiguration.account[current_store.code]["site_id"] %>;

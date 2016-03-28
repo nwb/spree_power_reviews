@@ -14,14 +14,14 @@
 
 <%
    #for the products sharing reviews
-   review_product=@product
+   @review_product ||=@product
 
 %>
 
     <script type="text/javascript">
         //<![CDATA[
         var pr_locale = 'en_US';
-        var pr_page_id = '<%= @product.id.to_s%>';
+        var pr_page_id = '<%= @review_product.id.to_s%>';
         var pr_style_sheet = 'http://<%= current_store.url%>/assets/spree/frontend/powerreviews.css';
         var pr_merchant_group_id = '<%= Spree::PowerReviewsConfiguration.account[current_store.code]["merchant_group_id"] %>';
         var pr_promo_code = '<%= Spree::PowerReviewsConfiguration.account[current_store.code]["pr_promo_code"] %>';

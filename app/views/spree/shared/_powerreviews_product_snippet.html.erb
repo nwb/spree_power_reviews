@@ -1,4 +1,6 @@
-<%   @product||=product%>
+<%   @product||=product
+     @review_product||=@product
+%>
 
 <div class="pr_review_summary" id="review_summary_<%=@review_product.id.to_s%>">
   <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>

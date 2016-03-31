@@ -15,6 +15,9 @@ Spree::ProductsController.class_eval do
     if %w(1839).include?(@product.id.to_s)
       @review_product=Spree::Product.find(1077)
     end
+    if %w(1807).include?(@product.id.to_s)
+      @review_product=Spree::Product.find(1796)
+    end
   end
 
   def question

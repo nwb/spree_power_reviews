@@ -12,8 +12,8 @@
    if %w(1839).include?(@product.id.to_s)
      @review_product=Spree::Product.find(1077)
    end
-   if %w(1807).include?(@product.id.to_s)
-     @review_product=Spree::Product.find(1796)
+   if %w(1807,1796).include?(@product.id.to_s)
+     @review_product=Spree::Product.find(1109)
    end
 %>
 <div class="pr_review_summary" id="review_summary_<%=@review_product.id.to_s%>">

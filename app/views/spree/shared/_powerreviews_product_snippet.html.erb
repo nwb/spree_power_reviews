@@ -19,7 +19,6 @@
 <div class="pr_review_summary" id="review_summary_<%=@review_product.id.to_s%>">
   <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
 </div>
-<div class="rating"><div class="pr_review_summary"><span id="ask_a_question" tabindex="5"><a href="#qa">Ask a Question</a></span></div></div>
 <div class="clear"></div>
 <script>
     var rs<%=@review_product.id.to_s%>=$("#review_summary_<%=@review_product.id.to_s%>")

@@ -44,7 +44,14 @@ var pr_site_id = '2';
 
 <script type="text/javascript">
     //<![CDATA[
-    POWERREVIEWS.display.engine(r<%=@review_product.id.to_s%>, {"pr_snippet_min_reviews":1,"pr_write_review":"/products/<%=@review_product.slug%>/review","pr_style_sheet":"/","pr_page_id":"<%=@review_product.id.to_s%>"});
+    $(document).ready(function() {
+        POWERREVIEWS.display.engine(r<%=@review_product.id.to_s%>, {
+            "pr_snippet_min_reviews": 1,
+            "pr_write_review": "/products/<%=@review_product.slug%>/review",
+            "pr_style_sheet": "/",
+            "pr_page_id": "<%=@review_product.id.to_s%>"
+        });
+    });
     //]]>
 </script>
 </div>

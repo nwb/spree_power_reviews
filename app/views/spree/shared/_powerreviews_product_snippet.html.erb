@@ -15,28 +15,25 @@
    if %w(1807 1796).include?(@product.id.to_s)
      @review_product=Spree::Product.find(1109)
    end
+
+   the_rate=@review_product.review_set_average_rating.to_s || "0"
+   if the_rate.to_s.include? "."
+     arr=the_rate.split('.')
+     if arr[1].to_i>6
+       the_rate=(arr[0].to_i+1).to_s
+       elsif arr[1].to_i<3
+       the_rate=arr[0]
+       else
+         the_rate=arr[0] + '_5'
+     end
+   end
 %>
 <div class="pr_review_summary" id="review_summary_<%=@review_product.id.to_s%>">
+  <div class="pr-nwb-snippet-stars">
+    <div title="Perfect. It doesn't get any better" class="pr-stars pr-stars-small pr-stars-<%= the_rate%>-sm">&nbsp;</div>
+    </div>
   <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
 </div>
 <div class="clear"></div>
-<script>
-    var rs<%=@review_product.id.to_s%>=$("#review_summary_<%=@review_product.id.to_s%>")
-    rs<%=@review_product.id.to_s%>.html('')
-    rs<%=@review_product.id.to_s%>.write=function(d){rs<%=@review_product.id.to_s%>.html(d)}
-</script>
 
-<script type="text/javascript">
-    //<![CDATA[
-    $(document).ready(function() {
-        POWERREVIEWS.display.snippet(rs<%=@review_product.id.to_s%>, {
-            "pr_snippet_min_reviews": 1,
-            "pr_read_review": "#reviews",
-            "pr_write_review": "<%=@review_product.slug%>/review",
-            "pr_style_sheet": "/",
-            "pr_page_id": "<%=@review_product.id.to_s%>"
-        });
-    });
-    //]]>
-</script>
 

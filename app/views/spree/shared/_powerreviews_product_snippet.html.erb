@@ -27,6 +27,7 @@
          the_rate=arr[0] + '_5'
      end
    end
+   if the_rate.to_i>1
 %>
 <div class="pr_review_summary" id="review_summary_<%=@review_product.id.to_s%>">
   <div class="pr-nwb-snippet-stars">
@@ -35,5 +36,5 @@
   <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
 </div>
 <div class="clear"></div>
-
+<%end%>
 

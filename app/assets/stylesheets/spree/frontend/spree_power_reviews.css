@@ -46,3 +46,9 @@ the installer will append this file to the app vendored assets here: 'vendor/ass
 .pr-nwb-snippet-stars .pr-stars-1-sm {
     background-position:0 -36px;
 }
+.pr-nwb-snippet-stars .pr-stars-0_5-sm {
+    background:none;
+}
+.pr-nwb-snippet-stars .pr-stars-0-sm {
+    background:none;
+}

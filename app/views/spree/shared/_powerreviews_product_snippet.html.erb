@@ -34,7 +34,18 @@
     <div title="Perfect. It doesn't get any better" class="pr-stars pr-stars-small pr-stars-<%= the_rate%>-sm">&nbsp;</div>
     </div>
   <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
+  <div class="pr-snippet-read-write">
+    <div class="pr-snippet-read-reviews">
+      <a href="#reviews" data-pr-event="snippet-read-reviews" class="pr-snippet-link" id="">
+        Read
+        <span><%= @review_product.review_set_full_review_count %></span>
+        Reviews
+      </a>
+    </div>
+    <div class="pr-clear"></div>
+  </div>
 </div>
+
 <div class="clear"></div>
 <%end%>
 

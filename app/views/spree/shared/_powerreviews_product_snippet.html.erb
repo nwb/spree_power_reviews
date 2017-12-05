@@ -36,7 +36,7 @@
   <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
   <div class="pr-snippet-read-write">
     <div class="pr-snippet-read-reviews">
-      <a href="#reviews" data-pr-event="snippet-read-reviews" class="pr-snippet-link" id="">
+      <a href="#reviews" data-pr-event="snippet-read-reviews" data-turbolinks="false" class="pr-snippet-link" id="">
         Read
         <span><%= @review_product.review_set_full_review_count %></span>
         Reviews

@@ -47,6 +47,7 @@ var pr_site_id = '2';
 <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function() {
+        if (typeof POWERREVIEWS != 'undefined')
         POWERREVIEWS.display.engine(r<%=@review_product.id.to_s%>, {
             "pr_snippet_min_reviews": 1,
             "pr_write_review": "/products/<%=@review_product.slug%>/review",

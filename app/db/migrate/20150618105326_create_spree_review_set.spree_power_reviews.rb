@@ -1,4 +1,4 @@
-class CreateSpreeReviewSet < ActiveRecord::Migration
+class CreateSpreeReviewSet < SpreeExtension::Migration[4.2]
   def self.up
     create_table :spree_review_sets do |t|
       t.column :inline_path, :string

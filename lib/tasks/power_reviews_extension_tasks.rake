@@ -67,6 +67,7 @@ namespace :spree do
                   product.reload
                 end
                 review_set = product.review_set
+                if review_set
                 thefile =prod.css( 'inlinefile[reviewpage="1"]' ).inner_text || ''
                 review_set.inline_path           = "/data/nwbsite/current/tmp/powerreviews/" + thefile unless thefile.blank?
                 
@@ -79,6 +80,9 @@ namespace :spree do
                 review_set.save
                 prods << { :permalink => product.slug}
                 report << "Updating reviews for #{product.sku} (#{review_set.full_review_count} reviews)"
+                else
+                  report << "no review set for product: #{product.id}"
+                end
               end
             end
             expire_cache( prods )

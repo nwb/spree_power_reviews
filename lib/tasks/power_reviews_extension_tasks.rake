@@ -104,17 +104,11 @@ namespace :spree do
 
       def expire_cache prods
         return unless File.exist?(File.join(Rails.root, "public", "cache"))
-        controller = Spree::ProductsController.new
-        prods.each do |prod|
-          Dir.entries(File.join(Rails.root, "public", "cache")).each do |path|
-            next if [".", ".."].include?(path)
-            begin
-              controller.expire_page( "/cache/#{path}/products/#{prod[:permalink]}" )
-            rescue Exception => e
-              # submerge errors since its possible that the page isn't cached.
-            end
-            
-          end
+
+        begin
+          file_path= File.join(Rails.root,"/public/cache/.")
+          FileUtils.rm_rf(File.dirname(file_path))
+        rescue Exception => e
         end
       end
       

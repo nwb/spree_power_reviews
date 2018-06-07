@@ -119,16 +119,14 @@ namespace :spree do
         dest = File.join( pr_dir, timestamp.strftime( "%Y%m%d%H%M%S" ))
         success = :unknown
         begin
-          ftp = Net::FTP.new( Spree::PowerReviewsConfiguration.account["default"]["ftp_host"])
-          ftp.passive = Spree::PowerReviewsConfiguration.account["default"]["ftp_passive"]
-          ftp.login( Spree::PowerReviewsConfiguration.account["default"]["ftp_user"], Spree::PowerReviewsConfiguration.account["default"]["ftp_pass"])
 
-          # we are going to process the 
-          if ftp.nlst.include?( Spree::PowerReviewsConfiguration.account["default"]["delete_file"]) || Spree::PowerReviewsConfiguration.account["default"]["delete"]==0
+          sftp=Net::SFTP.start(Spree::PowerReviewsConfiguration.account["default"]["ftp_host"], Spree::PowerReviewsConfiguration.account["default"]["ftp_user"], :password => Spree::PowerReviewsConfiguration.account["default"]["ftp_pass"])
+          begin
+            # open and write to a pseudo-IO for a remote file
             report << "Downloading zipfile #{Spree::PowerReviewsConfiguration.account["default"]["file"] } and extracting to #{dest}"
             tmpzip = Tempfile.new( 'zip' )
             file_count = 0
-            ftp.getbinaryfile( Spree::PowerReviewsConfiguration.account["default"]["file"], tmpzip.path)
+            sftp.download!(Spree::PowerReviewsConfiguration.account["default"]["file"], tmpzip.path)
             Zip::ZipFile.open( tmpzip.path ) { |zip_file|
               zip_file.each { |f|
                 file_count +=1
@@ -141,23 +139,16 @@ namespace :spree do
             # verify contents
             if ["content", "engine", "**/review_data_summary.xml" ].inject(true){ |result, the_dir| result && ( Dir.glob( File.join( dest, "pwr",  the_dir ) ).count > 0 ) }
               success = :complete
-              if Spree::PowerReviewsConfiguration.account["default"]["delete"]==1
-                report << "Deleting #{Spree::PowerReviewsConfiguration.account["default"]["delete_file"]}"
-                ftp.delete(Spree::PowerReviewsConfiguration.account["default"]["delete_file"])
-              end
             else
               success = :error
               report << "Zip does not include required files."
             end
-          else
-            success = :nochange
           end
         rescue Exception => e
           report << e
           success = :error
         ensure
           tmpzip.close if tmpzip
-          ftp.close if ftp
         end
         [success,dest,report]
       end

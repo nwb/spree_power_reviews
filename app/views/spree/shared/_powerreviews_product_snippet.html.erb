@@ -21,32 +21,36 @@
      arr=the_rate.split('.')
      if arr[1].to_i>6
        the_rate=(arr[0].to_i+1).to_s
-       elsif arr[1].to_i<3
+     elsif arr[1].to_i<3
        the_rate=arr[0]
-       else
-         the_rate=arr[0] + '_5'
+     else
+       the_rate=arr[0] + '_5'
      end
    end
    if the_rate.to_i>1
 %>
-<div class="pr_review_summary" id="review_summary_<%=@review_product.id.to_s%>">
-  <div class="pr-nwb-snippet-stars">
-    <div title="Perfect. It doesn't get any better" class="pr-stars pr-stars-small pr-stars-<%= the_rate%>-sm">&nbsp;</div>
+    <div class="pr_review_summary" id="review_summary_<%=@review_product.id.to_s%>">
+      <div class="pr-nwb-snippet-stars">
+        <div title="Perfect. It doesn't get any better" class="pr-stars pr-stars-small pr-stars-<%= the_rate%>-sm">&nbsp;</div>
+      </div>
+      <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
+      <div class="pr-snippet-read-write">
+        <div class="pr-snippet-read-reviews">
+          <a href="#reviews" data-pr-event="snippet-read-reviews" class="pr-snippet-link" id="">
+            Read
+            <span><%= @review_product.review_set_full_review_count %></span>
+            Reviews
+          </a>
+        </div>
+        <div class="pr-snippet-write-review"><a href="<%= @review_product.slug %>/review" data-pr-event="snippet-write-review" class="pr-snippet-link">Write a Review</a></div>
+        <div class="pr-clear"></div>
+      </div>
+      <div itemprop="aggregateRating" class="forschema" style="display:none;" itemscope="" itemtype="http://schema.org/AggregateRating">
+        Rated <span itemprop="ratingValue"><%=@review_product.review_set_average_rating%></span>/5
+        based on <span itemprop="reviewCount"><%=@review_product.review_set_full_review_count%></span> customer reviews
+      </div>
     </div>
-  <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
-  <div class="pr-snippet-read-write">
-    <div class="pr-snippet-read-reviews">
-      <a href="#reviews" data-pr-event="snippet-read-reviews" data-turbolinks="false" class="pr-snippet-link" id="">
-        Read
-        <span><%= @review_product.review_set_full_review_count %></span>
-        Reviews
-      </a>
-    </div>
-    <div class="pr-snippet-write-review"><a href="/products/<%= @review_product.slug %>/review" data-pr-event="snippet-write-review" class="pr-snippet-link">Write a Review</a></div>
-    <div class="pr-clear"></div>
-  </div>
-</div>
 
-<div class="clear"></div>
+    <div class="clear"></div>
 <%end%>
 

@@ -1,56 +1,22 @@
-<%
-   content_for :head do          %>
 
-    <%= stylesheet_link_tag "/pwr/engine/pr_styles_review.css", :media => 'screen' %>
-
-    <%= javascript_include_tag '/pwr/engine/js/full' %>
-    <script type="text/javascript">
-//<![CDATA[
-var pr_style_sheet = '/';
-var pr_locale = 'en_US';
-var pr_zip_location = '/';
-var pr_site_id = '2';
-//]]>
-</script>
-
-<%   end -%>
+<% unless @review_product.variants_and_option_values(current_currency).any?
+    img_url=@review_product.images.first.attachment.url(:large)
+  else
+    img_url=@review_product.variants.first.images.first.attachment.url(:large)
+ end %>
 
 <div id="reviews" class="ui-tabs-panel ui-widget-content ui-corner-bottom" data-hook="product_reviews">
 
-  <%unless request.xhr?%>
-
-  <div class="pr_review_summary" id="review_images_<%=@review_product.id.to_s%>">
-    <script type="text/javascript">
-        //<![CDATA[
-        if (typeof POWERREVIEWS != 'undefined' && typeof POWERREVIEWS.display != 'undefined' && typeof POWERREVIEWS.display.imageSnippet != 'undefined'){
-            POWERREVIEWS.display.imageSnippet(document, {"pr_image_snippet_max":200,"pr_page_id":"<%=@review_product.id.to_s%>"});
-        }
-        //]]>
-    </script>
-
-  </div>
-  <%end%>
 <div class="pr_review_summary" id="review_<%=@review_product.id.to_s%>">
-    <%#= File.read( product.review_set_inline_path ) if (product.review_set && !product.review_set_inline_path.blank? && File.exists?( product.review_set_inline_path ) )%>
+  <div class="yotpo yotpo-main-widget"
+       data-product-id="<%= @review_product.id%>"
+       data-price="<%= @review_product.price%>"
+       data-currency="USD"
+       data-name="<%= @review_product.name%>"
+       data-url="/products/<%= @review_product.slug%>"
+       data-image-url="<%= img_url%>">
+  </div>
 </div>
-    <script>
-        var r<%=@review_product.id.to_s%>=$("#review_<%=@review_product.id.to_s%>")
-        r<%=@review_product.id.to_s%>.html('')
-        r<%=@review_product.id.to_s%>.write=function(d){r<%=@review_product.id.to_s%>.html(d)}
-    </script>
 
-<script type="text/javascript">
-    //<![CDATA[
-    $(document).ready(function() {
-        if (typeof POWERREVIEWS != 'undefined')
-        POWERREVIEWS.display.engine(r<%=@review_product.id.to_s%>, {
-            "pr_snippet_min_reviews": 1,
-            "pr_write_review": "/products/<%=@review_product.slug%>/review",
-            "pr_style_sheet": "/",
-            "pr_page_id": "<%=@review_product.id.to_s%>"
-        });
-    });
-    //]]>
-</script>
 </div>
 
